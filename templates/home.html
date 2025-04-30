@@ -29,7 +29,7 @@
         border: none;
     }
     button {
-        background-color: #007BFF;
+        background-color: #ff6200;
         color: white;
     }
 </style>
@@ -52,12 +52,7 @@
     <p style="color: red;">{{ error }}</p>
 {% endif %}
 
-{% if weather %}
-    <h2>Weather in {{ weather.name }}</h2>
-    <p>Temperature: {{ weather.main.temp }} °C</p>
-    <p>Description: {{ weather.weather.0.description }}</p>
-    <p>Humidity: {{ weather.main.humidity }}%</p>
-{% endif %}
+
 
 </body>
 </html>
