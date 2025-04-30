@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+</head>
+<style>
+    body {
+        background-image: url("{% static '/download.jpeg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+        padding-top: 100px;
+    }
+    .container {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 20px;
+        border-radius: 10px;
+        display: inline-block;
+    }
+    input[type="text"], button {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+    }
+    button {
+        background-color: #007BFF;
+        color: white;
+    }
+</style>
+<body>
+    <h1>Check the Weather</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather %}
+        <h2>Weather in {{ weather.name }}</h2>
+        <p>Temperature: {{ weather.main.temp }} °C</p>
+        <p>Description: {{ weather.weather.0.description }}</p>
+        <p>Humidity: {{ weather.main.humidity }}%</p>
+    {% endif %}
+
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+{% if weather %}
+    <h2>Weather in {{ weather.name }}</h2>
+    <p>Temperature: {{ weather.main.temp }} °C</p>
+    <p>Description: {{ weather.weather.0.description }}</p>
+    <p>Humidity: {{ weather.main.humidity }}%</p>
+{% endif %}
+
+</body>
+</html>
